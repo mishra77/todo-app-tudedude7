@@ -1,0 +1,56 @@
+<%- include("partials/header") %>
+
+<div class="container">
+  <!-- Add Task Section -->
+  <form method="post" action="/" class="add-form">
+    <input name="ele1" placeholder="Enter a task..." />
+    <select name="priority">
+      <option>Low</option>
+      <option selected>Medium</option>
+      <option>High</option>
+    </select>
+    <button type="submit">+</button>
+  </form>
+
+  <!-- Filter Section -->
+  <form method="get" action="/" class="filter-form">
+    <label for="priority">Filter by Priority:</label>
+    <select name="priority" onchange="this.form.submit()">
+      <option value="All" <%= filter === "All" ? "selected" : "" %>>All</option>
+      <option value="High" <%= filter === "High" ? "selected" : "" %>>High</option>
+      <option value="Medium" <%= filter === "Medium" ? "selected" : "" %>>Medium</option>
+      <option value="Low" <%= filter === "Low" ? "selected" : "" %>>Low</option>
+    </select>
+  </form>
+
+  <!-- Todo Items -->
+  <div class="todo-list">
+    <% if (exejs.length === 0) { %>
+      <p class="empty">No tasks yet. Add one above 👆</p>
+    <% } else { %>
+      <% exejs.forEach(task => { %>
+        <div class="todo-item">
+          <form action="/delete" method="post" class="delete-form">
+            <input type="checkbox" name="checkbox1" onchange="this.form.submit()" value="<%= task._id %>"/>
+          </form>
+          <div class="task-text">
+            <span><%= task.name %></span>
+            <small>(<%= task.priority %>)</small>
+          </div>
+          <form action="/edit" method="post" class="edit-form">
+            <input type="hidden" name="id" value="<%= task._id %>">
+            <input type="text" name="updatedName" placeholder="Edit task..." />
+            <select name="updatedPriority">
+              <option <%= task.priority==='Low'?'selected':'' %>>Low</option>
+              <option <%= task.priority==='Medium'?'selected':'' %>>Medium</option>
+              <option <%= task.priority==='High'?'selected':'' %>>High</option>
+            </select>
+            <button type="submit" class="update-btn">Update</button>
+          </form>
+        </div>
+      <% }) %>
+    <% } %>
+  </div>
+</div>
+
+<%- include("partials/footer") %>
