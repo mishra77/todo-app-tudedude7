@@ -1,5 +1,23 @@
 # todo-app-tudedude7
 
+# Todo App
+
+A simple Todo app with priority filter, built with Node.js, Express, EJS, and MongoDB.
+
+## Features
+- Add tasks with priority (Low, Medium, High)
+- Edit and delete tasks
+- Filter tasks by priority
+
+## GitHub Repository
+https://github.com/mishra77/todo-app-tudedude7
+
+## Live Application
+https://todo-app-tudedude7.onrender.com
+
+
+
+
 # 📝 My TODO List App
 
 A simple TODO List web app built using **Node.js**, **Express**, and **EJS**.
